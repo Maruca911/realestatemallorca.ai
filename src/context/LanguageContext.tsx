@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { LanguageCode, DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '../lib/i18n/config';
-import { loadTranslations, clearTranslationCache } from '../lib/i18n/translations';
+import { loadTranslations } from '../lib/i18n/translations';
 
 interface LanguageContextType {
   currentLanguage: LanguageCode;
@@ -10,7 +10,7 @@ interface LanguageContextType {
   t: (key: string, defaultValue?: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: LanguageCode }> = ({
   children,
@@ -56,10 +56,3 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLang
   );
 };
 
-export const useLanguage = (): LanguageContextType => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within LanguageProvider');
-  }
-  return context;
-};

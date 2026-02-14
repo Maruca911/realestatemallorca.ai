@@ -1,7 +1,7 @@
 import { supabase } from '../supabase';
 import { LanguageCode } from './config';
 
-let translationCache: Map<string, Record<string, string>> = new Map();
+const translationCache: Map<string, Record<string, string>> = new Map();
 let cacheTimestamp = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 

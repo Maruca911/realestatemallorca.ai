@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { LanguageCode, LANGUAGE_CODES, DEFAULT_LANGUAGE } from './lib/i18n/config';
-import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { LanguageProvider } from './context/LanguageContext';
+import { useLanguage } from './hooks/useLanguage';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Signup from './pages/Signup';

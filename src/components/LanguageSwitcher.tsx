@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Globe } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../hooks/useLanguage';
 import { SUPPORTED_LANGUAGES, LanguageCode } from '../lib/i18n/config';
 
 export default function LanguageSwitcher() {
