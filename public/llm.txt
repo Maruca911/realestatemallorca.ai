@@ -1,0 +1,122 @@
+# LLM.txt - Real Estate Mallorca
+# https://realestatemallorca.ai
+# Last updated: 2026-02-14
+
+## About
+Real Estate Mallorca is a free property matching service for the island of Mallorca, Spain. We connect international buyers, renters, and investors with vetted properties and agents. Users submit their preferences and receive 3 curated property options within 24 hours via email or WhatsApp.
+
+## Primary Services
+- Short-term vacation rentals (apartments, villas, holiday homes)
+- Long-term residential rentals (monthly and annual leases)
+- Villas for sale (luxury homes, modern properties, sea-view estates)
+- Fincas for sale (traditional country estates, rural properties)
+- Apartments for sale (modern flats, penthouses, beachfront units)
+- Beachfront property (first-line sea-view homes across all types)
+- Investment properties (buy-to-let, capital growth, Golden Visa eligible)
+- Real estate agent matching (vetted, multilingual professionals)
+
+## Key Pages
+
+### Homepage
+- URL: /
+- Description: Overview of all services with property matching form
+
+### Short-Term Rentals
+- URL: /rentals/short-term
+- Description: Hub page for vacation rentals across Mallorca, pricing by location, property types
+- Location pages: /rentals/short-term/palma, /rentals/short-term/alcudia, /rentals/short-term/pollensa, /rentals/short-term/soller, /rentals/short-term/deia, /rentals/short-term/andratx, /rentals/short-term/santa-ponsa, /rentals/short-term/cala-dor, /rentals/short-term/magaluf
+
+### Long-Term Rentals
+- URL: /rentals/long-term
+- Description: Monthly and annual rental properties for residents and relocators
+- Location pages: /rentals/long-term/palma, /rentals/long-term/pollensa, /rentals/long-term/andratx, /rentals/long-term/soller, /rentals/long-term/cala-dor
+
+### Villas for Sale
+- URL: /sales/villas
+- Description: Luxury villas and modern homes across Mallorca
+- Location pages: /sales/villas/palma, /sales/villas/pollensa, /sales/villas/andratx, /sales/villas/soller, /sales/villas/cala-dor
+
+### Fincas for Sale
+- URL: /sales/fincas
+- Description: Traditional country estates and rural properties
+- Location pages: /sales/fincas/deia, /sales/fincas/soller, /sales/fincas/pollensa, /sales/fincas/alcudia, /sales/fincas/santa-ponsa
+
+### Apartments for Sale
+- URL: /sales/apartments
+- Description: Modern flats, penthouses, and beachfront apartments from 120k EUR
+- Location pages: /sales/apartments/palma, /sales/apartments/alcudia, /sales/apartments/santa-ponsa, /sales/apartments/cala-dor, /sales/apartments/pollensa, /sales/apartments/magaluf
+
+### Beachfront Property
+- URL: /sales/beachfront
+- Description: First-line sea-view properties across 8 coastal areas, prices from 200k to 8M+
+
+### Investment Properties
+- URL: /investments
+- Description: Property investment opportunities with 4-7% rental yields and 5-8% appreciation
+
+### Guides
+- URL: /guides/buying-property-mallorca - Complete 10-step buying guide for foreign purchasers
+- URL: /guides/nie-number-mallorca - NIE number application process, documents, costs, timeline
+- URL: /guides/etv-license-mallorca - ETV tourist rental license types, application, moratorium updates
+- URL: /guides/property-taxes-mallorca - All property taxes: purchase costs, annual taxes, selling costs
+- URL: /guides/cost-of-living-mallorca - Monthly costs for singles, couples, families by location
+- URL: /guides/expat-guide-mallorca - Residency options, healthcare, schools, best areas for expats
+- URL: /guides/mallorca-vs-ibiza-menorca-investment - Balearic island comparison for property investors
+
+### Real Estate Agents
+- URL: /agents
+- Description: Vetted, multilingual real estate professionals across Mallorca
+
+### FAQ
+- URL: /faq
+- Description: 60 expert-answered questions about buying, renting, investing, and living in Mallorca
+
+### Blog
+- URL: /blog
+- Description: 20 articles on short-term rentals, buying guides, market trends, investment, lifestyle
+- Key articles: /blog/complete-guide-short-term-rentals-mallorca, /blog/mallorca-real-estate-market-forecast-2026, /blog/golden-visa-spain-mallorca-property, /blog/10-mistakes-buying-property-mallorca, /blog/americans-moving-to-mallorca-guide, /blog/beckham-law-spain-tax-benefits-mallorca
+
+### Property Matching Signup
+- URL: /signup
+- Description: Free property matching form - submit preferences, receive 3 curated options in 24 hours
+
+## Topics Covered
+- Short-term rental regulations and ETV tourist licenses in Mallorca
+- Property purchase process for foreigners (EU and non-EU)
+- Costs and taxes: ITP transfer tax, IBI property tax, notary fees, wealth tax, capital gains
+- NIE number requirements for property transactions
+- Golden Visa program through Spanish property investment
+- Beckham Law tax benefits for new residents
+- Digital Nomad Visa requirements and benefits
+- Mortgage options for non-resident buyers (LTV, rates, process)
+- Finca renovation costs and building permits
+- Mallorca property market trends and forecasts
+- Apartments and penthouses market overview
+- Beachfront property regulations and Ley de Costas
+- Location guides: Palma, Alcudia, Pollensa, Soller, Deia, Andratx, Santa Ponsa, Cala d'Or, Magaluf
+- Eco-friendly and sustainable properties
+- Co-ownership and fractional property models
+- Expat relocation: residency, healthcare, international schools
+- Cost of living comparison across locations
+- Mallorca vs Ibiza vs Menorca investment comparison
+- Americans moving to Mallorca (visa, tax, banking)
+- Remote working and digital nomad infrastructure
+- Winter short-term rentals and off-season travel
+- Best areas for families with children
+
+## Market Data
+- Average property price: 4,600 - 5,200 per sqm
+- Apartment prices: 2,200 - 8,000 per sqm depending on location
+- Short-term rental rates: 80 - 500 per night depending on location
+- Long-term rental rates: 750 - 3,500 per month
+- Rental yields: 4-8% for licensed tourist properties
+- Annual appreciation: 3-8% depending on segment
+- Purchase costs: 10-13% on top of purchase price
+- Golden Visa threshold: 500,000 EUR minimum investment
+- Mortgage rates: 2.5-3.5% fixed, Euribor +1.0-1.5% variable
+- Non-resident LTV: 60-70%
+
+## Contact
+- Website: https://realestatemallorca.ai
+- Email: hello@realestatemallorca.ai
+- Languages: English, German, Spanish
