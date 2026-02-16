@@ -1,4 +1,4 @@
-import { supabase } from '../supabase';
+import { isBackendEnabled, supabase } from '../supabase';
 import { LanguageCode } from './config';
 
 const translationCache: Map<string, Record<string, string>> = new Map();
@@ -11,6 +11,10 @@ export async function loadTranslations(languageCode: LanguageCode): Promise<Reco
 
   // Return cached translations if still valid
   if (translationCache.has(cacheKey) && now - cacheTimestamp < CACHE_DURATION) {
+    return translationCache.get(cacheKey) || {};
+  }
+
+  if (!isBackendEnabled || !supabase) {
     return translationCache.get(cacheKey) || {};
   }
 
@@ -51,6 +55,10 @@ export async function upsertTranslation(
   value: string,
   context?: string
 ): Promise<boolean> {
+  if (!isBackendEnabled || !supabase) {
+    return false;
+  }
+
   try {
     const { error } = await supabase
       .from('translations')

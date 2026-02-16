@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Star, Clock, Shield, Users, Loader2 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { isBackendEnabled, supabase } from '../../lib/supabase';
+
+const BACKEND_DISABLED_NOTICE = 'Lead and newsletter submissions are temporarily unavailable while we complete backend setup. Please check back shortly.';
 
 const LOCATIONS = [
   'Palma', 'Alcudia', 'Pollensa', 'Soller', 'Deia',
@@ -22,8 +24,12 @@ export default function ShortTermRentalLP() {
   });
 
   const set = (field: string, value: string) => setForm((prev) => ({ ...prev, [field]: value }));
+  const controlsDisabled = !isBackendEnabled || loading;
 
   const submit = async () => {
+    if (!isBackendEnabled || !supabase) {
+      return;
+    }
     setLoading(true);
     const params = new URLSearchParams(window.location.search);
     await supabase.from('leads').insert({
@@ -97,6 +103,9 @@ export default function ShortTermRentalLP() {
                 </div>
               ))}
             </div>
+            {!isBackendEnabled && (
+              <p className="text-amber-700 text-sm mb-4">{BACKEND_DISABLED_NOTICE}</p>
+            )}
 
             {step === 1 && (
               <div className="space-y-4">
@@ -106,11 +115,12 @@ export default function ShortTermRentalLP() {
                     <button
                       key={loc}
                       onClick={() => set('location', loc)}
+                      disabled={controlsDisabled}
                       className={`p-3 rounded-lg text-sm font-medium text-left transition-colors border ${
                         form.location === loc
                           ? 'bg-sea-50 border-sea-300 text-sea-700'
                           : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                      }`}
+                      } disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       {loc}
                     </button>
@@ -118,7 +128,7 @@ export default function ShortTermRentalLP() {
                 </div>
                 <button
                   onClick={() => form.location && setStep(2)}
-                  disabled={!form.location}
+                  disabled={controlsDisabled || !form.location}
                   className="w-full btn-primary disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Continue <ArrowRight className="w-4 h-4 ml-1" />
@@ -134,21 +144,22 @@ export default function ShortTermRentalLP() {
                     <button
                       key={g}
                       onClick={() => set('guests', g)}
+                      disabled={controlsDisabled}
                       className={`p-3 rounded-lg text-sm font-medium transition-colors border ${
                         form.guests === g
                           ? 'bg-sea-50 border-sea-300 text-sea-700'
                           : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                      }`}
+                      } disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       {g} guests
                     </button>
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => setStep(1)} className="px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-600 hover:bg-gray-50">Back</button>
+                  <button disabled={controlsDisabled} onClick={() => setStep(1)} className="px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">Back</button>
                   <button
                     onClick={() => form.guests && setStep(3)}
-                    disabled={!form.guests}
+                    disabled={controlsDisabled || !form.guests}
                     className="flex-1 btn-primary disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Continue <ArrowRight className="w-4 h-4 ml-1" />
@@ -163,6 +174,7 @@ export default function ShortTermRentalLP() {
                 <input
                   type="text"
                   placeholder="Full name"
+                  disabled={controlsDisabled}
                   value={form.name}
                   onChange={(e) => set('name', e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-aqua-500 focus:border-aqua-500 outline-none"
@@ -170,6 +182,7 @@ export default function ShortTermRentalLP() {
                 <input
                   type="email"
                   placeholder="Email address"
+                  disabled={controlsDisabled}
                   value={form.email}
                   onChange={(e) => set('email', e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-aqua-500 focus:border-aqua-500 outline-none"
@@ -177,6 +190,7 @@ export default function ShortTermRentalLP() {
                 <input
                   type="tel"
                   placeholder="Phone (optional)"
+                  disabled={controlsDisabled}
                   value={form.phone}
                   onChange={(e) => set('phone', e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-aqua-500 focus:border-aqua-500 outline-none"
@@ -184,6 +198,7 @@ export default function ShortTermRentalLP() {
                 <label className="flex items-start gap-2 cursor-pointer">
                   <input
                     type="checkbox"
+                    disabled={controlsDisabled}
                     checked={consent}
                     onChange={(e) => setConsent(e.target.checked)}
                     className="mt-1 rounded border-gray-300 text-aqua-500 focus:ring-aqua-500"
@@ -193,10 +208,10 @@ export default function ShortTermRentalLP() {
                   </span>
                 </label>
                 <div className="flex gap-2">
-                  <button onClick={() => setStep(2)} className="px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-600 hover:bg-gray-50">Back</button>
+                  <button disabled={controlsDisabled} onClick={() => setStep(2)} className="px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">Back</button>
                   <button
                     onClick={submit}
-                    disabled={!form.name || !form.email || !consent || loading}
+                    disabled={controlsDisabled || !form.name || !form.email || !consent}
                     className="flex-1 btn-cta disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><ArrowRight className="w-4 h-4" /> Get My 3 Matches</>}

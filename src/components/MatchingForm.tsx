@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { isBackendEnabled, supabase } from '../lib/supabase';
+
+const BACKEND_DISABLED_NOTICE = 'Lead and newsletter submissions are temporarily unavailable while we complete backend setup. Please check back shortly.';
 
 interface MatchingFormProps {
   sourcePage: string;
@@ -60,6 +62,9 @@ export default function MatchingForm({ sourcePage, defaultType = 'short-term', c
   };
 
   const handleSubmit = async () => {
+    if (!isBackendEnabled || !supabase) {
+      return;
+    }
     setLoading(true);
     const params = new URLSearchParams(window.location.search);
     const budgetParts = form.budget.split('-');
@@ -110,6 +115,7 @@ export default function MatchingForm({ sourcePage, defaultType = 'short-term', c
         }}
         className="space-y-4"
       >
+        <fieldset disabled={!isBackendEnabled} className={`space-y-4 ${!isBackendEnabled ? 'opacity-70' : ''}`}>
         {step === 1 && (
           <div className="animate-fade-in">
             <label className="block text-sm font-medium text-gray-700 mb-2">What are you looking for?</label>
@@ -241,6 +247,10 @@ export default function MatchingForm({ sourcePage, defaultType = 'short-term', c
           <button type="button" onClick={() => setStep(step - 1)} className="text-sm text-gray-500 hover:text-gray-700">
             &larr; Back
           </button>
+        )}
+        </fieldset>
+        {!isBackendEnabled && (
+          <p className="text-amber-700 text-sm">{BACKEND_DISABLED_NOTICE}</p>
         )}
       </form>
     );
