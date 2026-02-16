@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Instagram, Twitter, Mail, ArrowRight } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { isBackendEnabled, supabase } from '../lib/supabase';
+
+const BACKEND_DISABLED_NOTICE = 'Lead and newsletter submissions are temporarily unavailable while we complete backend setup. Please check back shortly.';
 
 const FOOTER_LINKS = {
   Rentals: [
@@ -42,18 +44,24 @@ const FOOTER_LINKS = {
 
 export default function Footer() {
   const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'disabled'>('idle');
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    if (!isBackendEnabled || !supabase) {
+      setStatus('disabled');
+      return;
+    }
+
+    setStatus('loading');
 
     await supabase.from('newsletter_subscribers').insert({
       email,
       source_page: window.location.pathname,
     });
 
-    setSubscribed(true);
+    setStatus('success');
     setEmail('');
   };
 
@@ -75,7 +83,7 @@ export default function Footer() {
             </p>
 
             <form onSubmit={handleSubscribe} className="flex max-w-sm">
-              {subscribed ? (
+              {status === 'success' ? (
                 <p className="text-aqua-400 text-sm font-medium">Thanks for subscribing!</p>
               ) : (
                 <>
@@ -86,10 +94,12 @@ export default function Footer() {
                     placeholder="Your email for market updates"
                     className="flex-1 px-4 py-2.5 rounded-l-lg bg-sea-800 border border-sea-700 text-white placeholder-sea-400 text-sm focus:outline-none focus:ring-2 focus:ring-aqua-500"
                     required
+                    disabled={!isBackendEnabled}
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2.5 bg-aqua-500 hover:bg-aqua-600 rounded-r-lg transition-colors"
+                    disabled={!isBackendEnabled || status === 'loading'}
+                    className="px-4 py-2.5 bg-aqua-500 hover:bg-aqua-600 rounded-r-lg transition-colors disabled:opacity-60"
                     aria-label="Subscribe"
                   >
                     <ArrowRight className="w-4 h-4" />
@@ -97,6 +107,9 @@ export default function Footer() {
                 </>
               )}
             </form>
+            {(!isBackendEnabled || status === 'disabled') && (
+              <p className="text-amber-300 text-xs mt-2 max-w-sm">{BACKEND_DISABLED_NOTICE}</p>
+            )}
           </div>
 
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
