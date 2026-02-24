@@ -1,0 +1,6 @@
+# LLMs pointer for Real Estate Mallorca
+
+This site provides its full crawler index at:
+https://realestatemallorca.ai/llm.txt
+
+Use that file as the primary machine-readable reference.

@@ -4,6 +4,10 @@ import { Home, Instagram, Twitter, Mail, ArrowRight } from 'lucide-react';
 import { isBackendEnabled, supabase } from '../lib/supabase';
 
 const BACKEND_DISABLED_NOTICE = 'Lead and newsletter submissions are temporarily unavailable while we complete backend setup. Please check back shortly.';
+const SOCIAL_LINKS = {
+  instagram: 'https://www.instagram.com/realestatemallorca/',
+  x: 'https://x.com/realestatemallorca',
+};
 
 const FOOTER_LINKS = {
   Rentals: [
@@ -142,10 +146,10 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Real Estate Mallorca. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-sea-400 hover:text-aqua-400 transition-colors" aria-label="Instagram">
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-sea-400 hover:text-aqua-400 transition-colors" aria-label="Instagram">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="text-sea-400 hover:text-aqua-400 transition-colors" aria-label="Twitter">
+            <a href={SOCIAL_LINKS.x} target="_blank" rel="noopener noreferrer" className="text-sea-400 hover:text-aqua-400 transition-colors" aria-label="Twitter">
               <Twitter className="w-5 h-5" />
             </a>
             <a href="mailto:hello@realestatemallorca.ai" className="text-sea-400 hover:text-aqua-400 transition-colors" aria-label="Email">
